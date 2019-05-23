@@ -43,6 +43,9 @@ class CalendarList extends Component {
     // Dynamic calendar height
     calendarHeight: PropTypes.number,
 
+    // Style for the List item (the calendar)
+    calendarStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.array]),
+
     // Should Keyboard persist taps
     keyboardShouldPersistTaps: PropTypes.oneOf(['never', 'always', 'handled'])
   };
@@ -187,7 +190,15 @@ class CalendarList extends Component {
   }
 
   renderCalendar({item}) {
-    return (<CalendarListItem item={item} calendarHeight={this.props.calendarHeight} calendarWidth={this.props.horizontal ? this.props.calendarWidth : undefined  } {...this.props} />);
+    return (
+      <CalendarListItem
+        item={item}
+        calendarHeight={this.props.calendarHeight}
+        calendarWidth={this.props.horizontal ? this.props.calendarWidth : undefined}
+        {...this.props}
+        style={this.props.calendarStyle}
+      />
+    );
   }
 
   getItemLayout(data, index) {
